@@ -1,0 +1,1 @@
+{% extends 'student/base_student.html' %}{% block content %}<h1>Subjects & Topics</h1>{% if items %}<div class="grid">{% for item in items %}<div class="card"><h3>{{item.subject}}</h3><p>{{item.topic}}</p></div>{% endfor %}</div>{% else %}<div class="card">No subject/topic data available yet.</div>{% endif %}{% endblock %}

@@ -1,0 +1,1 @@
+{% extends 'student/base_student.html' %}{% block content %}<h1>Notifications</h1>{% for n in notifications %}<div class="card"><h3>{{n.title}}</h3><p>{{n.message}}</p><span class="muted">{{n.created_at.strftime('%d %b %Y')}}</span></div>{% else %}<div class="card">No notifications available.</div>{% endfor %}{% endblock %}

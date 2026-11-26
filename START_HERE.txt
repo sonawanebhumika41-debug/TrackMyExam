@@ -1,0 +1,15 @@
+TRACKMYEXAM — FIXED STARTUP NOTES
+
+Fix for the PyMySQL error: RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods.
+
+1. Open PowerShell in the TrackMyExam folder.
+2. Activate the environment: .\.venv\Scripts\Activate.ps1
+3. Install dependencies: python -m pip install -r requirements.txt
+   The requirements now include cryptography, which PyMySQL needs for your MySQL authentication method.
+4. Copy .env.example to .env and enter your actual MySQL password in DB_PASSWORD. Do not share or upload .env.
+5. In MySQL Workbench, make sure the database exists: CREATE DATABASE IF NOT EXISTS trackmyexam;
+6. Run: python app.py
+
+If pip install fails because there is no internet connection, connect to the internet and rerun it. Do not change your MySQL authentication method as the first fix.
+
+This package excludes the original .venv and .env intentionally. A virtual environment is machine-specific, and .env may contain passwords. Python source files were reformatted into readable multi-line code without changing their parsed logic.

@@ -1,0 +1,1 @@
+{% extends 'student/base_student.html' %}{% block content %}<h1>Syllabus</h1>{% if items %}{% for item in items %}<div class="card"><b>{{item.subject}}</b><p>{{item.topic}}</p><span class="pill">{{item.status}}</span></div>{% endfor %}{% else %}<div class="card"><p>No syllabus items have been added by Admin yet.</p></div>{% endif %}{% endblock %}

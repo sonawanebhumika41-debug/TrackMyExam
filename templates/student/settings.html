@@ -1,0 +1,1 @@
+{% extends 'student/base_student.html' %}{% block content %}<h1>Settings</h1><div class="card"><h3>Account</h3><p><b>Name:</b> {{student.full_name}}</p><p><b>Email:</b> {{student.email}}</p><p class="muted">Account settings are currently informational.</p><a class="btn danger" href="{{url_for('logout')}}">Logout</a></div>{% endblock %}

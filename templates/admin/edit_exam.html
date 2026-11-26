@@ -1,0 +1,9 @@
+{% extends 'admin/base_admin.html' %}{% block content %}
+<h1>Edit Exam</h1>
+<div class="card">
+    <form method="post">
+        <label>Exam Name</label>
+        <input name="exam_name" value="{{exam.exam_name}}" required>
+        <label>Description</label>
+        <textarea name="description">{{exam.description or ''}}</textarea>
+        <label>Exam Date</label><input type="date" name="exam_date" value="{{exam.exam_date or ''}}"><label>Status</label><select name="status"><option {% if exam.status=='Active' %}selected{% endif %}>Active</option><option {% if exam.status=='Inactive' %}selected{% endif %}>Inactive</option></select><button class="btn">Save Changes</button> <a class="btn secondary" href="{{url_for('manage_exams')}}">Cancel</a></form></div>{% endblock %}

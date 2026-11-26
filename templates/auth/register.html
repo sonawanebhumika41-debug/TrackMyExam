@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackMyExam — Create Account</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy-900:#0B1F3A; --navy-800:#122B52; --navy-700:#1A3A6B;
+  --blue-700:#1D4ED8; --blue-600:#2563EB; --blue-500:#3B82F6; --blue-100:#E8F0FE;
+  --sky-50:#F5F8FD; --white:#FFFFFF; --ink-900:#101828; --ink-600:#475467; --ink-400:#98A2B3;
+  --line:#E4E9F2; --success:#17A673; --danger:#E5484D; --danger-bg:#FDEAEA;
+  --radius-lg:18px; --radius-md:12px;
+  --shadow-card:0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06);
+  --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; min-height:100vh; font-family:var(--font-body); background:var(--sky-50); color:var(--ink-900); }
+.auth-shell{ min-height:100vh; display:flex; }
+
+/* ---------- Left brand panel ---------- */
+.brand-panel{
+  flex:0 0 40%; max-width:520px; position:relative; overflow:hidden;
+  background:
+    radial-gradient(700px 420px at 10% 0%, rgba(59,130,246,.35), transparent 60%),
+    radial-gradient(650px 420px at 100% 100%, rgba(29,78,216,.30), transparent 55%),
+    linear-gradient(165deg, var(--navy-900) 0%, var(--navy-800) 55%, var(--navy-700) 100%);
+  color:var(--white); display:flex; flex-direction:column; justify-content:space-between; padding:44px 46px;
+}
+.brand-panel::before{
+  content:""; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size:24px 24px; pointer-events:none;
+}
+.bp-logo{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.15rem; position:relative; z-index:1;}
+.bp-logo .logo-badge{ width:38px; height:38px; border-radius:11px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:1.05rem; }
+
+.bp-mid{ position:relative; z-index:1; margin-top:22px; }
+.bp-heading{ font-family:var(--font-display); font-weight:600; font-size:1.55rem; line-height:1.42; max-width:370px; }
+.bp-sub{ color:#B9CCF0; font-size:.9rem; margin-top:12px; max-width:360px; line-height:1.6; }
+
+.exam-chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.exam-chip-static{
+  font-size:.74rem; font-weight:600; color:#DCE9FF; background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18); padding:6px 12px; border-radius:99px;
+}
+
+.checklist{ margin-top:30px; list-style:none; padding:0; display:flex; flex-direction:column; gap:16px; }
+.checklist li{ display:flex; align-items:flex-start; gap:12px; font-size:.86rem; color:#CBDCF9; }
+.checklist i{ color:#6FA6FF; font-size:1.05rem; margin-top:1px; width:18px; }
+.checklist strong{ display:block; color:var(--white); font-size:.9rem; margin-bottom:2px; }
+
+.bp-foot{ position:relative; z-index:1; font-size:.78rem; color:#8FADE0; }
+
+/* ---------- Right form panel ---------- */
+.form-panel{ flex:1; display:flex; align-items:center; justify-content:center; padding:40px 24px; }
+.auth-card{ width:100%; max-width:620px; }
+
+.auth-title{ font-family:var(--font-display); font-weight:700; font-size:1.5rem; margin-bottom:4px; }
+.auth-sub{ color:var(--ink-600); font-size:.9rem; margin-bottom:24px; }
+
+.flash-banner{
+  background:var(--danger-bg); color:var(--danger); border-radius:10px; padding:12px 16px;
+  font-size:.85rem; font-weight:600; margin-bottom:20px; display:flex; align-items:center; gap:10px;
+}
+
+.section-label{
+  font-family:var(--font-display); font-weight:600; font-size:.76rem; letter-spacing:1px; text-transform:uppercase;
+  color:var(--blue-700); margin:22px 0 12px;
+}
+.section-label:first-of-type{ margin-top:0; }
+
+.form-label{ font-weight:600; font-size:.83rem; color:var(--ink-900); }
+.form-control, .form-select{ border:1.5px solid var(--line); border-radius:10px; padding:.6rem .9rem; font-size:.9rem; }
+.form-control:focus, .form-select:focus{ border-color:var(--blue-500); box-shadow:0 0 0 3px var(--blue-100); }
+.input-icon-wrap{ position:relative; }
+.input-icon-wrap i{ position:absolute; top:50%; left:14px; transform:translateY(-50%); color:var(--ink-400); font-size:.85rem; }
+.input-icon-wrap .form-control, .input-icon-wrap .form-select{ padding-left:38px; }
+.toggle-pass{ position:absolute; top:50%; right:12px; transform:translateY(-50%); color:var(--ink-400); cursor:pointer; background:none; border:0; }
+
+.exam-select-hint{ font-size:.78rem; color:var(--ink-600); margin-bottom:12px; }
+.exam-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; }
+.exam-option{ position:relative; }
+.exam-option input{ position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
+.exam-option label{
+  display:flex; align-items:center; gap:10px; border:1.5px solid var(--line); border-radius:10px;
+  padding:11px 13px; font-size:.85rem; font-weight:600; color:var(--ink-600); cursor:pointer; transition:.15s ease;
+}
+.exam-option label i{ color:var(--blue-600); font-size:1rem; width:18px; text-align:center; }
+.exam-option input:checked + label{
+  border-color:var(--blue-600); background:var(--blue-100); color:var(--blue-700);
+}
+.exam-option input:focus-visible + label{ outline:2px solid var(--blue-500); outline-offset:1px; }
+.exam-error{ font-size:.78rem; color:var(--danger); margin-top:8px; display:none; }
+.exam-error.show{ display:block; }
+
+.pw-hint{ font-size:.76rem; color:var(--ink-400); margin-top:6px; }
+.pw-mismatch{ font-size:.78rem; color:var(--danger); margin-top:6px; display:none; }
+.pw-mismatch.show{ display:block; }
+
+.btn-primary-brand{
+  background:linear-gradient(135deg, var(--blue-600), var(--blue-700)); border:0; border-radius:10px;
+  padding:.7rem 1rem; font-weight:600; font-size:.95rem; box-shadow:0 8px 20px rgba(37,99,235,.28);
+}
+.btn-primary-brand:hover{ background:linear-gradient(135deg, var(--blue-700), var(--navy-700)); }
+
+.link-blue{ color:var(--blue-700); font-weight:600; text-decoration:none; }
+.link-blue:hover{ text-decoration:underline; }
+
+@media (max-width: 991.98px){ .brand-panel{ display:none; } }
+@media (max-width: 575.98px){ .exam-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <!-- ===== Left brand panel ===== -->
+  <aside class="brand-panel">
+    <div class="bp-logo">
+      <span class="logo-badge"><i class="fa-solid fa-bullseye"></i></span>
+      TrackMyExam
+    </div>
+
+    <div class="bp-mid">
+      <div class="bp-heading">One account. Every competitive exam you're preparing for.</div>
+      <div class="bp-sub">Track eligibility, syllabus progress, mock-test scores and exam dates for UPSC, MPSC, SSC, Banking, Railways and more — all in one dashboard.</div>
+
+      <div class="exam-chip-row">
+        <span class="exam-chip-static">UPSC</span>
+        <span class="exam-chip-static">MPSC</span>
+        <span class="exam-chip-static">SSC CGL</span>
+        <span class="exam-chip-static">IBPS</span>
+        <span class="exam-chip-static">Railway</span>
+        <span class="exam-chip-static">+ more</span>
+      </div>
+
+      <ul class="checklist">
+        <li>
+          <i class="fa-solid fa-clipboard-check"></i>
+          <div><strong>Automatic eligibility check</strong>Matched against Admin-maintained rules for each exam.</div>
+        </li>
+        <li>
+          <i class="fa-solid fa-calendar-days"></i>
+          <div><strong>Live exam countdowns</strong>Update instantly whenever the official date changes.</div>
+        </li>
+        <li>
+          <i class="fa-solid fa-chart-line"></i>
+          <div><strong>Performance analytics</strong>Track mock-test scores and syllabus progress per exam.</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bp-foot">© 2026 TrackMyExam · Competitive Exam Preparation & Performance Tracking System</div>
+  </aside>
+
+  <!-- ===== Right form panel ===== -->
+  <main class="form-panel">
+    <div class="auth-card">
+
+      <div class="auth-title">Create your account</div>
+      <div class="auth-sub">Set up your profile once — track every exam after.</div>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash-banner">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+              {% for message in messages %}{{ message }}{% if not loop.last %}<br>{% endif %}{% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form id="registerForm" action="{{ url_for('register') }}" method="POST" novalidate>
+
+        <!-- ===== Personal details ===== -->
+        <div class="section-label">Personal details</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Full Name</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" name="full_name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email Address</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-envelope"></i>
+              <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Date of Birth</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-cake-candles"></i>
+              <input type="date" name="dob" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Gender</label>
+            <select name="gender" class="form-select" required>
+              <option selected disabled value="">Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nationality</label>
+            <select name="nationality" class="form-select" required>
+              <option value="Indian" selected>Indian</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Category</label>
+            <select name="category" class="form-select" required>
+              <option selected disabled value="">Select category</option>
+              <option value="General">General</option>
+              <option value="OBC">OBC</option>
+              <option value="SC">SC</option>
+              <option value="ST">ST</option>
+              <option value="EWS">EWS</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== Education & preparation ===== -->
+        <div class="section-label">Education &amp; preparation</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Educational Qualification</label>
+            <select name="qualification" class="form-select" required>
+              <option selected disabled value="">Select qualification</option>
+              <option value="10th Pass">10th Pass</option>
+              <option value="12th Pass">12th Pass</option>
+              <option value="Graduate">Graduate</option>
+              <option value="Post Graduate">Post Graduate</option>
+              <option value="Doctorate">Doctorate</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Preparation Level</label>
+            <select name="preparation_level" class="form-select" required>
+              <option selected disabled value="">Select your level</option>
+              <option value="Beginner">Beginner — just starting out</option>
+              <option value="Intermediate">Intermediate — a few months in</option>
+              <option value="Advanced">Advanced — appeared for exams before</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== Exam selection (multi-select) ===== -->
+        <div class="section-label">Select exam(s) you're preparing for</div>
+        <div class="exam-select-hint">Choose all that apply — you can add or remove exams later from your dashboard.</div>
+        <div class="exam-grid" id="examGrid">
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="UPSC" id="examUPSC">
+            <label for="examUPSC"><i class="fa-solid fa-landmark"></i>UPSC — Civil Services</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="MPSC" id="examMPSC">
+            <label for="examMPSC"><i class="fa-solid fa-building-columns"></i>MPSC — State Services</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="SSC CGL" id="examSSCCGL">
+            <label for="examSSCCGL"><i class="fa-solid fa-file-signature"></i>SSC CGL</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="SSC CHSL" id="examSSCCHSL">
+            <label for="examSSCCHSL"><i class="fa-solid fa-file-lines"></i>SSC CHSL</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="IBPS PO" id="examIBPSPO">
+            <label for="examIBPSPO"><i class="fa-solid fa-building-columns"></i>IBPS PO</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="IBPS Clerk" id="examIBPSClerk">
+            <label for="examIBPSClerk"><i class="fa-solid fa-cash-register"></i>IBPS Clerk</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="Railway" id="examRailway">
+            <label for="examRailway"><i class="fa-solid fa-train-subway"></i>Railway (RRB)</label>
+          </div>
+          <div class="exam-option">
+            <input type="checkbox" name="exams" value="Other" id="examOther">
+            <label for="examOther"><i class="fa-solid fa-plus"></i>Other exam</label>
+          </div>
+        </div>
+        <div class="exam-error" id="examError"><i class="fa-solid fa-circle-exclamation me-1"></i>Please select at least one exam.</div>
+
+        <!-- ===== Security ===== -->
+        <div class="section-label">Account security</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Password</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" name="password" class="form-control" id="regPass" placeholder="Create a password" minlength="8" required>
+              <button type="button" class="toggle-pass" onclick="const f=document.getElementById('regPass'); f.type=f.type==='password'?'text':'password';">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <div class="pw-hint">Minimum 8 characters.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Confirm Password</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" name="confirm_password" class="form-control" id="regPassConfirm" placeholder="Re-enter password" required>
+            </div>
+            <div class="pw-mismatch" id="pwMismatch"><i class="fa-solid fa-circle-exclamation me-1"></i>Passwords do not match.</div>
+          </div>
+        </div>
+
+        <div class="form-check mt-4">
+          <input class="form-check-input" type="checkbox" id="terms" required>
+          <label class="form-check-label small text-muted" for="terms">
+            I agree to the <span class="link-blue">Terms of Use</span> and <span class="link-blue">Privacy Policy</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary-brand w-100 text-white mt-4">
+          Create account <i class="fa-solid fa-arrow-right ms-1"></i>
+        </button>
+      </form>
+
+      <p class="text-center small text-muted mt-4 mb-0">
+        Already have an account? <a href="{{ url_for('login') }}" class="link-blue">Log in</a>
+      </p>
+
+    </div>
+  </main>
+
+</div>
+
+<script>
+  // Client-side validation only — the actual save happens server-side once the
+  // backend/database is built. This just stops obviously invalid submissions.
+  document.getElementById('registerForm').addEventListener('submit', function(e){
+    let valid = true;
+
+    // At least one exam must be selected
+    const examChecked = document.querySelectorAll('#examGrid input[type="checkbox"]:checked').length > 0;
+    const examError = document.getElementById('examError');
+    examError.classList.toggle('show', !examChecked);
+    if(!examChecked) valid = false;
+
+    // Passwords must match
+    const pass = document.getElementById('regPass').value;
+    const confirm = document.getElementById('regPassConfirm').value;
+    const pwMismatch = document.getElementById('pwMismatch');
+    const mismatch = pass !== confirm;
+    pwMismatch.classList.toggle('show', mismatch);
+    if(mismatch) valid = false;
+
+    if(!valid) e.preventDefault();
+  });
+</script>
+</body>
+</html>
